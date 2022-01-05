@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="logo">Android Hotel</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Log In</string>
+    <string name="signUp">Sign Up</string>
+    <string name="hasAccount">Already Have an account?</string>
+    <string name="noAccount">First Time User</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="type">Type</string>
+    <string-array name="accountType">
+        <item name="customer">Customer</item>
+        <item name="receptionist">Receptionist</item>
+    </string-array>
 </resources>

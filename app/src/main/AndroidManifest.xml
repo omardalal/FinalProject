@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject">
         <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
