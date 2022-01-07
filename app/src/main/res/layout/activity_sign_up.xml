@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
-
     <TextView
         android:id="@+id/signupTitle"
         android:layout_width="fill_parent"
@@ -45,10 +44,10 @@
         android:text="@string/firstName"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress3" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordField" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress2"
+        android:id="@+id/lastNameField"
         style="@style/textStyle"
         android:layout_width="fill_parent"
         android:layout_height="43dp"
@@ -73,10 +72,10 @@
         android:text="@string/password"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailText" />
+        app:layout_constraintTop_toBottomOf="@+id/emailField" />
 
     <EditText
-        android:id="@+id/emailText"
+        android:id="@+id/emailField"
         style="@style/textStyle"
         android:layout_width="fill_parent"
         android:layout_height="43dp"
@@ -92,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/emailLbl" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress4"
+        android:id="@+id/firstNameField"
         style="@style/textStyle"
         android:layout_width="fill_parent"
         android:layout_height="43dp"
@@ -112,14 +111,15 @@
         style="@style/btnStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="153dp"
-        android:text="@string/login"
+        android:onClick="signUp"
+        android:text="@string/signUp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categorySpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/typeSpinner" />
 
     <TextView
         android:id="@+id/textView4"
@@ -131,7 +131,7 @@
         android:text="@string/lastName"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress4" />
+        app:layout_constraintTop_toBottomOf="@+id/firstNameField" />
 
     <TextView
         android:id="@+id/textView6"
@@ -143,10 +143,10 @@
         android:text="@string/type"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+        app:layout_constraintTop_toBottomOf="@+id/lastNameField" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress3"
+        android:id="@+id/passwordField"
         style="@style/textStyle"
         android:layout_width="fill_parent"
         android:layout_height="43dp"
@@ -155,14 +155,14 @@
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Spinner
-        android:id="@+id/categorySpinner"
+        android:id="@+id/typeSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"

@@ -10,6 +10,8 @@
     <string name="firstName">First Name</string>
     <string name="lastName">Last Name</string>
     <string name="type">Type</string>
+    <string name="fillAllFields">Please fill all fields!</string>
+    <string name="loginFail">Wrong email or password!</string>
     <string-array name="accountType">
         <item name="customer">Customer</item>
         <item name="receptionist">Receptionist</item>
