@@ -58,6 +58,14 @@ public class BackendRequests {
     }
 
     public static void getRequest(String endpoint, Context context, final RequestCallback callback) {
+        getRequestCall(endpoint, context, "", callback);
+    }
+
+    public static void getRequest(String endpoint, Context context, String errMsg, final RequestCallback callback) {
+        getRequestCall(endpoint, context, errMsg, callback);
+    }
+
+    public static void getRequestCall(String endpoint, Context context, String errMsg, final RequestCallback callback) {
         String url = "http://10.0.2.2/HotelApp/" + endpoint;
         RequestQueue queue = Volley.newRequestQueue(context);
         ArrayList<JSONObject> result = new ArrayList<>();
@@ -76,7 +84,7 @@ public class BackendRequests {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, !errMsg.isEmpty()?errMsg:error.toString(), Toast.LENGTH_LONG).show();
             }
         });
         queue.add(request);

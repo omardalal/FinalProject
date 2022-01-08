@@ -34,25 +34,22 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.fillAllFields, Toast.LENGTH_SHORT).show();
             return;
         }
-        BackendRequests.getRequest("login.php?email=" + email + "&password=" + password, this, new RequestCallback() {
-            @Override
-            public void onResponse(ArrayList<JSONObject> response, boolean success) {
-                if (response.size()==0) {
-                    Toast.makeText(LoginActivity.this, R.string.loginFail, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                try {
-                    SharedPreferences preferences = getSharedPreferences("loggedAccount", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("loggedEmail", response.get(0).getString("email"));
-                    PublicData.loggedEmail = response.get(0).getString("email");
-                    editor.commit();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                } catch (JSONException e) {
-                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.failedToLogin), Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
+        BackendRequests.getRequest("login.php?email=" + email + "&password=" + password, this, (response, success) -> {
+            if (response.size()==0) {
+                Toast.makeText(LoginActivity.this, R.string.loginFail, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            try {
+                SharedPreferences preferences = getSharedPreferences("loggedAccount", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("loggedEmail", response.get(0).getString("email"));
+                PublicData.loggedEmail = response.get(0).getString("email");
+                editor.commit();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            } catch (JSONException e) {
+                Toast.makeText(LoginActivity.this, getResources().getString(R.string.failedToLogin), Toast.LENGTH_LONG).show();
+                e.printStackTrace();
             }
         });
     }
