@@ -36,7 +36,6 @@ public class SignUpActivity extends AppCompatActivity {
         firstNameField = findViewById(R.id.firstNameField);
         lastNameField = findViewById(R.id.lastNameField);
         typeSpinner = findViewById(R.id.typeSpinner);
-
     }
 
     public void signUp(View view) {
@@ -55,14 +54,14 @@ public class SignUpActivity extends AppCompatActivity {
         postMap.put("firstName", firstName);
         postMap.put("lastName", lastName);
         postMap.put("type", type);
-        BackendRequests.postRequest("signup.php", SignUpActivity.this, postMap, new RequestCallback() {
+        BackendRequests.postRequest("signup.php", this, postMap, new RequestCallback() {
             @Override
             public void onResponse(ArrayList<JSONObject> response, boolean success) {
                 if (success) {
                     SharedPreferences preferences = getSharedPreferences("loggedAccount", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("loggedEmail", email);
-                    SharedData.loggedEmail = email;
+                    PublicData.loggedEmail = email;
                     editor.commit();
                     Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                     startActivity(intent);

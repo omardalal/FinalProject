@@ -1,14 +1,12 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -47,11 +45,12 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences preferences = getSharedPreferences("loggedAccount", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("loggedEmail", response.get(0).getString("email"));
-                    SharedData.loggedEmail = response.get(0).getString("email");
+                    PublicData.loggedEmail = response.get(0).getString("email");
                     editor.commit();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 } catch (JSONException e) {
+                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.failedToLogin), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
             }
