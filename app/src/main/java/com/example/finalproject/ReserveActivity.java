@@ -3,41 +3,33 @@ package com.example.finalproject;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReserveActivity extends AppCompatActivity {
 
     private static Button startDateBtn;
     private static Button endDateBtn;
+    private Button reserveBtn;
     private TextView availableLbl;
     private TextView startWeatherLbl;
     private TextView startWeatherValLbl;
@@ -56,6 +48,7 @@ public class ReserveActivity extends AppCompatActivity {
 
         startDateBtn = findViewById(R.id.startDateBtn);
         endDateBtn = findViewById(R.id.endDateBtn);
+        reserveBtn = findViewById(R.id.reserveBtn);
         availableLbl = findViewById(R.id.availableLbl);
         startWeatherLbl = findViewById(R.id.startWeatherLbl);
         startWeatherValLbl = findViewById(R.id.startWeatherValueLbl);
@@ -67,6 +60,25 @@ public class ReserveActivity extends AppCompatActivity {
         setupDates();
         Intent srcIntent = getIntent();
         roomNumber = srcIntent.getIntExtra("roomNumber", 1);
+    }
+
+    public void reserve(View view) {
+        final String startDate = createSQLDate(startYear, startMonth, startDay);
+        final String endDate = createSQLDate(endYear, endMonth, endDay);
+        Map<String, String> params = new HashMap<>();
+        params.put("startDate", startDate);
+        params.put("endDate", endDate);
+        params.put("roomNumber", ""+roomNumber);
+        params.put("userEmail", PublicData.loggedEmail);
+        BackendRequests.postRequest("reserveRoom.php", this, params, (response, success) -> {
+            if (success) {
+                Intent intent = new Intent(this, RoomActivity.class);
+                intent.putExtra("roomNumber", roomNumber);
+                startActivity(intent);
+            } else {
+                Toast.makeText(ReserveActivity.this, getResources().getString(R.string.roomReserveFail), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private static void setupDates() {
@@ -96,6 +108,7 @@ public class ReserveActivity extends AppCompatActivity {
                 if (available) {
                     availableLbl.setTextColor(PublicData.AVAILABLE_COLOR);
                     availableLbl.setText(getResources().getString(R.string.roomStatusAvailable));
+                    reserveBtn.setVisibility(View.VISIBLE);
                 } else {
                     availableLbl.setTextColor(PublicData.BOOKED_COLOR);
                     availableLbl.setText(getResources().getString(R.string.roomStatusBooked));
@@ -159,9 +172,11 @@ public class ReserveActivity extends AppCompatActivity {
                         }
                         if (!stSet) {
                             startWeatherValLbl.setText(getResources().getString(R.string.weatherOutOfRange));
+                            startWeatherImg.setVisibility(View.INVISIBLE);
                         }
                         if (!endSet) {
                             endWeatherValLbl.setText(getResources().getString(R.string.weatherOutOfRange));
+                            endWeatherImg.setVisibility(View.INVISIBLE);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

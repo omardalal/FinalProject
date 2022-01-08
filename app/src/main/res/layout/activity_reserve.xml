@@ -59,8 +59,8 @@
         android:layout_below="@id/endDateBtn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:text="@string/checkAvailability"
-        android:onClick="check"/>
+        android:onClick="check"
+        android:text="@string/checkAvailability" />
 
     <TextView
         android:id="@+id/availableLbl"
@@ -139,5 +139,17 @@
         android:layout_below="@id/endWeatherLbl"
         android:visibility="invisible"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/reserveBtn"
+        style="@style/btnStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/endWeatherValueLbl"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:visibility="invisible"
+        android:onClick="reserve"
+        android:text="@string/reserveRoomBtn" />
 
 </RelativeLayout>

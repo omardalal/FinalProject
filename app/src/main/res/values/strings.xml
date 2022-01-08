@@ -29,6 +29,7 @@
     <string name="weatherOutOfRange">Out of Range</string>
     <string name="reserveActivityHeader">Reserve Room</string>
     <string name="invalidDate">Invalid Date</string>
+    <string name="roomReserveFail">Failed to reserve room</string>
     <string-array name="accountType">
         <item name="customer">Customer</item>
         <item name="receptionist">Receptionist</item>
