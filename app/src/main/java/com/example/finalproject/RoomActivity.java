@@ -34,9 +34,8 @@ public class RoomActivity extends AppCompatActivity {
     private String roomDescription;
     private String roomStatus;
     private String roomFloor;
-    //To Do - Get room number from parent activity
-    private final int roomNumber = 1;
 
+    private int roomNumber = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +50,9 @@ public class RoomActivity extends AppCompatActivity {
         roomDescriptionLbl = findViewById(R.id.roomDescLbl);
         roomStatusLbl = findViewById(R.id.roomStatusLbl);
         numberTypeLbl = findViewById(R.id.roomTypeLbl);
+
+        Intent srcIntent = getIntent();
+        roomNumber = srcIntent.getIntExtra("roomNumber", 1);
 
         getRoomInformation();
     }
@@ -73,9 +75,6 @@ public class RoomActivity extends AppCompatActivity {
         BackendRequests.getRequest("checkAvailability.php?roomNumber=" + roomNumber, this, (response, success) -> {
             try {
                 boolean available = response.get(0).getBoolean("available");
-                if (!available) {
-                    reserveRoomBtn.setEnabled(false);
-                }
                 roomStatus = available?getResources().getString(R.string.roomStatusAvailable):getResources().getString(R.string.roomStatusBooked);
                 roomStatusLbl.setText(roomStatus);
                 if (!available) {
