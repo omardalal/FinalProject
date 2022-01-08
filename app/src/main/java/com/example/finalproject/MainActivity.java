@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean checkIfLoggedIn() {
         SharedPreferences preferences = getSharedPreferences("loggedAccount", MODE_PRIVATE);
         String loggedEmail = preferences.getString("loggedEmail", "");
-        SharedData.loggedEmail = loggedEmail;
+        PublicData.loggedEmail = loggedEmail;
         if (!loggedEmail.isEmpty()) {
             //To Do - Remove next line and navigate to logged in main page
             Toast.makeText(this, "Logged Account = "+loggedEmail, Toast.LENGTH_LONG).show();
