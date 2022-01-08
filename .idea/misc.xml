@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/omard/Desktop/Desktop/University/COMP438/FinalProject/app/src/main/res/layout/activity_login.xml" value="0.3828571428571429" />
+        <entry key="..\:/Users/omard/Desktop/Desktop/University/COMP438/FinalProject/app/src/main/res/drawable/c.xml" value="0.12129629629629629" />
+        <entry key="..\:/Users/omard/Desktop/Desktop/University/COMP438/FinalProject/app/src/main/res/layout/activity_login.xml" value="0.3674540682414698" />
         <entry key="..\:/Users/omard/Desktop/Desktop/University/COMP438/FinalProject/app/src/main/res/layout/activity_main.xml" value="0.3378623188405797" />
+        <entry key="..\:/Users/omard/Desktop/Desktop/University/COMP438/FinalProject/app/src/main/res/layout/activity_reserve.xml" value="0.3146067415730337" />
         <entry key="..\:/Users/omard/Desktop/Desktop/University/COMP438/FinalProject/app/src/main/res/layout/activity_room.xml" value="0.42857142857142855" />
         <entry key="..\:/Users/omard/Desktop/Desktop/University/COMP438/FinalProject/app/src/main/res/layout/activity_sign_up.xml" value="0.2292358803986711" />
         <entry key="..\:/Users/omard/Desktop/Desktop/University/COMP438/FinalProject/app/src/main/res/menu/room_menu.xml" value="0.30625" />

@@ -1,7 +1,9 @@
 package com.example.finalproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,41 +56,35 @@ public class RoomActivity extends AppCompatActivity {
     }
 
     public void getRoomInformation() {
-        BackendRequests.getRequest("roomInfo.php?roomNumber=" + roomNumber, this, new RequestCallback() {
-            @Override
-            public void onResponse(ArrayList<JSONObject> response, boolean success) {
-                try {
-                    roomType = response.get(0).getString("typeName");
-                    roomDescription = response.get(0).getString("typeDescription");
-                    roomFloor = response.get(0).getString("floor");
-                    updateViewsInformation();
-                } catch (JSONException e) {
-                    Toast.makeText(RoomActivity.this, getResources().getString(R.string.failedToGetRoomInformation), Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
+        BackendRequests.getRequest("roomInfo.php?roomNumber=" + roomNumber, this, (response, success) -> {
+            try {
+                roomType = response.get(0).getString("typeName");
+                roomDescription = response.get(0).getString("typeDescription");
+                roomFloor = response.get(0).getString("floor");
+                updateViewsInformation();
+            } catch (JSONException e) {
+                Toast.makeText(RoomActivity.this, getResources().getString(R.string.failedToGetRoomInformation), Toast.LENGTH_LONG).show();
+                e.printStackTrace();
             }
         });
     }
 
     public void setupRoomStatus() {
-        BackendRequests.getRequest("checkAvailability.php?roomNumber=" + roomNumber, this, new RequestCallback() {
-            @Override
-            public void onResponse(ArrayList<JSONObject> response, boolean success) {
-                try {
-                    boolean available = response.get(0).getBoolean("available");
-                    if (!available) {
-                        reserveRoomBtn.setEnabled(false);
-                    }
-                    roomStatus = available?getResources().getString(R.string.roomStatusAvailable):getResources().getString(R.string.roomStatusBooked);
-                    roomStatusLbl.setText(roomStatus);
-                    if (!available) {
-                        roomStatusLbl.setTextColor(PublicData.BOOKED_COLOR);
-                    } else {
-                        roomStatusLbl.setTextColor(PublicData.AVAILABLE_COLOR);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        BackendRequests.getRequest("checkAvailability.php?roomNumber=" + roomNumber, this, (response, success) -> {
+            try {
+                boolean available = response.get(0).getBoolean("available");
+                if (!available) {
+                    reserveRoomBtn.setEnabled(false);
                 }
+                roomStatus = available?getResources().getString(R.string.roomStatusAvailable):getResources().getString(R.string.roomStatusBooked);
+                roomStatusLbl.setText(roomStatus);
+                if (!available) {
+                    roomStatusLbl.setTextColor(PublicData.BOOKED_COLOR);
+                } else {
+                    roomStatusLbl.setTextColor(PublicData.AVAILABLE_COLOR);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         });
     }
@@ -135,10 +131,17 @@ public class RoomActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent = new Intent(this, ReserveActivity.class);
+        intent.putExtra("roomNumber", roomNumber);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.room_menu, menu);
         reserveRoomBtn = menu.findItem(R.id.reserveRoomBtn);
-        //To DO: Go to reserve activity
         setupRoomStatus();
         return super.onCreateOptionsMenu(menu);
     }
