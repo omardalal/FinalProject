@@ -18,6 +18,10 @@
             android:exported="true"
             android:parentActivityName=".RoomActivity">
         </activity>
+
+        <activity
+            android:name=".RoomSearchActivity"
+            android:exported="true" />
         <activity
             android:name=".RoomActivity"
             android:exported="true">
