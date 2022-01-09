@@ -1,7 +1,6 @@
 package com.example.finalproject;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -40,7 +39,7 @@ public class BackendRequests {
         }, new com.android.volley.Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("BackendError", error.getMessage());
+                Log.e("Post Error", error.getMessage());
                 Toast.makeText(context,"Fail to get response = " + error, Toast.LENGTH_LONG).show();
             }
         }) {
@@ -58,6 +57,14 @@ public class BackendRequests {
     }
 
     public static void getRequest(String endpoint, Context context, final RequestCallback callback) {
+        getRequestCall(endpoint, context, "", callback);
+    }
+
+    public static void getRequest(String endpoint, Context context, String errMsg, final RequestCallback callback) {
+        getRequestCall(endpoint, context, errMsg, callback);
+    }
+
+    public static void getRequestCall(String endpoint, Context context, String errMsg, final RequestCallback callback) {
         String url = "http://10.0.2.2/HotelApp/" + endpoint;
         RequestQueue queue = Volley.newRequestQueue(context);
         ArrayList<JSONObject> result = new ArrayList<>();
@@ -76,7 +83,8 @@ public class BackendRequests {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                Log.e("Get Error", error.getMessage());
+                Toast.makeText(context, !errMsg.isEmpty()?errMsg:error.toString(), Toast.LENGTH_LONG).show();
             }
         });
         queue.add(request);

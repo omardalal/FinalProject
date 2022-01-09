@@ -17,9 +17,18 @@
         <item name="android:textColor">@color/color_2</item>
         <item name="android:textSize">20sp</item>
     </style>
-    <style name="btnStyle" parent="android:Widget.TextView">
+    <style name="btnStyle" parent="android:Widget.Button">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20sp</item>
         <item name="android:height">60dp</item>
+    </style>
+    <style name="roomImagePreviewStyle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:scaleType">centerCrop</item>
     </style>
 </resources>
