@@ -87,8 +87,8 @@ public class RoomSearchActivity extends AppCompatActivity implements RoomAdapter
     public void onRoomClick(int position) {
         String str = items.get(position);
         Log.d(TAG, "onRoomClick: " + str);
-        Intent intent = new Intent(this, RoomInfoActivity.class);
-        intent.putExtra("number", str);
+        Intent intent = new Intent(this, RoomActivity.class);
+        intent.putExtra("roomNumber", str);
         startActivity(intent);
     }
 }
