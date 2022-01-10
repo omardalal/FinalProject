@@ -63,8 +63,8 @@ public class ReserveActivity extends AppCompatActivity {
     }
 
     public void reserve(View view) {
-        final String startDate = createSQLDate(startYear, startMonth, startDay);
-        final String endDate = createSQLDate(endYear, endMonth, endDay);
+        final String startDate = createSQLDateTime(startYear, startMonth, startDay);
+        final String endDate = createSQLDateTime(endYear, endMonth, endDay);
         Map<String, String> params = new HashMap<>();
         params.put("startDate", startDate);
         params.put("endDate", endDate);
@@ -92,13 +92,13 @@ public class ReserveActivity extends AppCompatActivity {
         endDateBtn.setText(day+"/"+(month+1)+"/"+year);
     }
 
-    private String createSQLDate(int year, int month, int day) {
+    public static String createSQLDateTime(int year, int month, int day) {
         return (year+"-"+String.format("%02d", month+1)+"-"+String.format("%02d", day));
     }
 
     public void check(View view) {
-        final String startDate = createSQLDate(startYear, startMonth, startDay);
-        final String endDate = createSQLDate(endYear, endMonth, endDay);
+        final String startDate = createSQLDateTime(startYear, startMonth, startDay);
+        final String endDate = createSQLDateTime(endYear, endMonth, endDay);
         final String endpoint = "checkAvailability.php?roomNumber=" + roomNumber+"&startDate="+startDate+"&endDate="+endDate;
         getWeatherData();
         BackendRequests.getRequest(endpoint, this, getResources().getString(R.string.invalidDate), (response, success) -> {
@@ -148,8 +148,8 @@ public class ReserveActivity extends AppCompatActivity {
             (Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    String stDate = createSQLDate(startYear, startMonth, startDay);
-                    String endDate = createSQLDate(endYear, endMonth, endDay);
+                    String stDate = createSQLDateTime(startYear, startMonth, startDay);
+                    String endDate = createSQLDateTime(endYear, endMonth, endDay);
                     try {
                         JSONArray array = response.getJSONArray("consolidated_weather");
                         boolean stSet = false;

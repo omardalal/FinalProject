@@ -1,11 +1,19 @@
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,12 +33,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean checkIfLoggedIn() {
         SharedPreferences preferences = getSharedPreferences("loggedAccount", MODE_PRIVATE);
         String loggedEmail = preferences.getString("loggedEmail", "");
-        PublicData.loggedEmail = loggedEmail;
-        if (!loggedEmail.isEmpty()) {
-            //To Do - Remove next line and navigate to logged in main page
-            Toast.makeText(this, "Logged Account = "+loggedEmail, Toast.LENGTH_LONG).show();
-            //Intent intent = new Intent(this, /**/.class);
-            //startActivity(intent);
+        String loggedType = preferences.getString("loggedType", "");
+        String loggedFirstName = preferences.getString("loggedFirstName", "");
+        String loggedLastName = preferences.getString("loggedLastName", "");
+        PublicData.loggedEmail = loggedEmail.trim();
+        PublicData.loggedType = loggedType.trim();
+        PublicData.loggedFirstName = loggedFirstName.trim();
+        PublicData.loggedLastName = loggedLastName.trim();
+        boolean loggedIn = !loggedEmail.isEmpty()&&!loggedType.isEmpty()&&!loggedFirstName.isEmpty()&&!loggedLastName.isEmpty();
+        if (loggedIn) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
         }
         return false;
     }

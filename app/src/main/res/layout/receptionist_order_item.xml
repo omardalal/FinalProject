@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/orderNumber"
+            style="@style/textStyle"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/orderNumber" />
+
+        <TextView
+            android:id="@+id/orderDesc"
+            style="@style/textStyle"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/orderNumber"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/menuItemDescPlaceholder"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/statusRg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/orderDesc"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/pendingRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/pending" />
+
+            <RadioButton
+                android:id="@+id/deliveredRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/delivered" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/statusRg"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="83dp"
+            android:layout_marginEnd="17dp"
+            android:layout_toRightOf="@id/orderDesc"
+            android:text="@string/save" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

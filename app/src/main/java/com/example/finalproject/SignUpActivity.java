@@ -56,11 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
         postMap.put("type", type);
         BackendRequests.postRequest("signup.php", this, postMap, (response, success) -> {
             if (success) {
-                SharedPreferences preferences = getSharedPreferences("loggedAccount", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("loggedEmail", email);
-                PublicData.loggedEmail = email;
-                editor.commit();
+                SaveUserInfo.writeData(email, type, firstName, lastName, this);
                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                 startActivity(intent);
             }

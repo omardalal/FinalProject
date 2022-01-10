@@ -14,6 +14,8 @@
     <string name="roomNumberPlaceholder">Room Number:</string>
     <string name="roomFloorPlaceholder">, Floor:</string>
     <string name="roomStatusAvailable">Available</string>
+    <string name="logout">Log Out</string>
+    <string name="welcome">Welcome</string>
     <string name="roomStatusBooked">Booked</string>
     <string name="failedToGetRoomInformation">Failed to get room information.</string>
     <string name="failedToLogin">Login Failed due to a connection error.</string>
@@ -30,8 +32,35 @@
     <string name="reserveActivityHeader">Reserve Room</string>
     <string name="invalidDate">Invalid Date</string>
     <string name="roomReserveFail">Failed to reserve room</string>
+    <string name="menuItemTitlePlaceholder">Title</string>
+    <string name="menuItemDescPlaceholder">Description</string>
+    <string name="order">Order</string>
+    <string name="selectItems">Please select at least one item!</string>
+    <string name="orderNumber">Order #</string>
+    <string name="menuHeader">Food Menu</string>
+    <string name="orders">Orders</string>
+    <string name="pending">Pending</string>
+    <string name="delivered">Delivered</string>
+    <string name="save">Save</string>
+    <string name="homeSearchRooms">Search Rooms</string>
+    <string name="search">Search</string>
+    <string name="reservedRooms">Reserved Rooms</string>
+    <string name="homeMyReservedRooms">My Reserved Rooms</string>
+    <string name="homeMyRoomService">My Rooms Service Orders</string>
+    <string name="homeALlReservedRooms">All Reserved Rooms</string>
+    <string name="homeAllRoomService">All Rooms Service Orders</string>
+    <string name="homeRoomServiceMenu">Room Service Menu</string>
+    <string name="home">Home</string>
+    <string name="checkIn">Check In</string>
+    <string name="checkOut">Check Out</string>
     <string-array name="accountType">
         <item name="customer">Customer</item>
         <item name="receptionist">Receptionist</item>
+    </string-array>
+    <string-array name="roomType">
+        <item name="oneBed">One Bed</item>
+        <item name="twoBed">Two Bed</item>
+        <item name="standard">Standard</item>
+        <item name="suite">Suite</item>
     </string-array>
 </resources>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/roomType"
+            style="@style/textStyle"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/menuItemTitlePlaceholder" />
+
+        <TextView
+            android:id="@+id/roomDesc"
+            style="@style/textStyle"
+            android:layout_width="200dp"
+            android:layout_height="115dp"
+            android:layout_below="@id/roomType"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/menuItemDescPlaceholder"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/checkInBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/roomDesc"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:text="@string/checkIn"/>
+
+        <Button
+            android:id="@+id/checkOutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/checkInBtn"
+            android:layout_toEndOf="@id/roomDesc"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:text="@string/checkOut"/>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

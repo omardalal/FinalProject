@@ -14,81 +14,66 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import model.RoomAdapter;
+public class RoomSearchActivity extends AppCompatActivity {
+    private Spinner spin;
+    private Button button;
+    private RecyclerView recyclerView;
 
-public class RoomSearchActivity extends AppCompatActivity implements RoomAdapter.onRoomListener {
-    public Spinner spin;
-    public Button button;
-    public RecyclerView recyclerView;
-    ArrayList<String> items = new ArrayList<>();
-
+    private ArrayList<Room> rooms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roomsearch);
+        getSupportActionBar().setTitle(R.string.search);
         spin = findViewById(R.id.spinner);
-        button = findViewById(R.id.button2);
+        button = findViewById(R.id.searchBtn);
         recyclerView = findViewById(R.id.recycler);
-        button.setOnClickListener(this::btn_onClick);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        BackendRequests.getRequest("RoomType.php", RoomSearchActivity.this, new RequestCallback() {
+        loadRecycler("");
+    }
 
-            @Override
-            public void onResponse(ArrayList<JSONObject> response, boolean success) {
+    public void loadRecycler(String roomType) {
+        rooms = new ArrayList<>();
+        BackendRequests.getRequest("roomsByType.php?roomType="+roomType, this, (response, success) -> {
+            for (int i=0; i<response.size(); i++) {
+                JSONObject obj = response.get(i);
                 try {
-                    ArrayList<String> results = new ArrayList<>();
-
-                    for (JSONObject o : response) {
-                        results.add(o.getString("typeName"));
-                    }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(RoomSearchActivity.this, android.R.layout.simple_spinner_dropdown_item, results);
-                    spin.setAdapter(adapter);
-                } catch (Exception x) {
-                    x.printStackTrace();
+                    String type = obj.getString("typeName");
+                    Room room = new Room(type, obj.getString("typeDescription"), getImg(type), Integer.parseInt(obj.getString("number")));
+                    rooms.add(room);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
                 }
             }
+            RoomAdapter adapter = new RoomAdapter(rooms, this);
+            recyclerView.setAdapter(adapter);
         });
     }
 
-    public void btn_onClick(View view) {
-        String roomType = spin.getSelectedItem().toString();
-        BackendRequests.getRequest("Rooms.php?typeName=" + roomType, RoomSearchActivity.this, new RequestCallback() {
-
-            @Override
-            public void onResponse(ArrayList<JSONObject> response, boolean success) {
-                try {
-
-                    for (JSONObject o : response) {
-                        items.add(o.getString("number"));
-                    }
-                    Log.d(TAG, "onResponse: " + items.toString());
-                    String[] arr = new String[items.size()];
-                    for (int i = 0; i < arr.length; i++) {
-                        arr[i] = items.get(i);
-                    }
-                    Log.d(TAG, "onResponse: " + Arrays.toString(arr));
-                    RoomAdapter adapter = new RoomAdapter(arr, RoomSearchActivity.this);
-
-                    recyclerView.setAdapter(adapter);
-                } catch (Exception x) {
-
-                }
-            }
-        });
-
+    public void search(View view) {
+        loadRecycler(spin.getSelectedItem()+"");
     }
 
-    @Override
-    public void onRoomClick(int position) {
-        String str = items.get(position);
-        Log.d(TAG, "onRoomClick: " + str);
-        Intent intent = new Intent(this, RoomActivity.class);
-        intent.putExtra("roomNumber", str);
-        startActivity(intent);
+    public int getImg(String roomType) {
+        switch (roomType) {
+            case PublicData.ONE_BED:
+                return R.drawable.onebed1;
+            case PublicData.TWO_BED:
+                return R.drawable.twobed1;
+            case PublicData.STANDARD:
+                return R.drawable.standard1;
+            case PublicData.SUITE:
+                return R.drawable.suite1;
+            default:
+                return R.drawable.onebed1;
+        }
     }
 }

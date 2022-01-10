@@ -1,155 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ReserveActivity">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".ReserveActivity"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
 
-    <TextView
-        android:id="@+id/startDateLbl"
-        style="@style/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/startDate"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/startDateBtn"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/startDateLbl"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="date"
-        android:text="@string/startDate"
-        android:onClick="startDateClicked"
-        />
+        <TextView
+            android:id="@+id/startDateLbl"
+            style="@style/textStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/startDate" />
 
-    <TextView
-        android:id="@+id/endDateLbl"
-        style="@style/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@id/startDateBtn"
-        android:text="@string/endDate" />
+        <Button
+            android:id="@+id/startDateBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/startDateLbl"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:inputType="date"
+            android:onClick="startDateClicked"
+            android:text="@string/startDate" />
 
-    <Button
-        android:id="@+id/endDateBtn"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_below="@id/endDateLbl"
-        android:inputType="date"
-        android:text="@string/endDate"
-        android:onClick="endDateClicked"
-        />
+        <TextView
+            android:id="@+id/endDateLbl"
+            style="@style/textStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/startDateBtn"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:text="@string/endDate" />
 
-    <Button
-        android:id="@+id/checkBtn"
-        style="@style/btnStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/endDateBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:onClick="check"
-        android:text="@string/checkAvailability" />
+        <Button
+            android:id="@+id/endDateBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/endDateLbl"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:inputType="date"
+            android:onClick="endDateClicked"
+            android:text="@string/endDate" />
 
-    <TextView
-        android:id="@+id/availableLbl"
-        style="@style/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/checkBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:textSize="25sp"
-        android:visibility="invisible"
-        android:text="@string/roomStatusAvailable" />
+        <Button
+            android:id="@+id/checkBtn"
+            style="@style/btnStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/endDateBtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:onClick="check"
+            android:text="@string/checkAvailability" />
 
-    <TextView
-        android:id="@+id/startWeatherLbl"
-        style="@style/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/weatherStartDate"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:layout_below="@id/availableLbl"
-        android:visibility="invisible"
-        />
+        <TextView
+            android:id="@+id/availableLbl"
+            style="@style/textStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkBtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="@string/roomStatusAvailable"
+            android:textSize="25sp"
+            android:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/startWeatherValueLbl"
-        style="@style/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/startWeatherLbl"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:visibility="invisible"
-        android:textSize="25sp" />
+        <TextView
+            android:id="@+id/startWeatherLbl"
+            style="@style/textStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/availableLbl"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/weatherStartDate"
+            android:visibility="invisible" />
 
-    <ImageView
-        android:id="@+id/startWeatherImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/startWeatherLbl"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="16dp"
-        android:visibility="invisible"
-        tools:srcCompat="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/startWeatherValueLbl"
+            style="@style/textStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/startWeatherLbl"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:textSize="25sp"
+            android:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/endWeatherLbl"
-        style="@style/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/weatherEndDate"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:visibility="invisible"
-        android:layout_below="@id/startWeatherValueLbl"/>
+        <ImageView
+            android:id="@+id/startWeatherImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/startWeatherLbl"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="16dp"
+            android:visibility="invisible"
+            tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/endWeatherValueLbl"
-        style="@style/textStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:visibility="invisible"
-        android:layout_below="@id/endWeatherLbl"
-        />
+        <TextView
+            android:id="@+id/endWeatherLbl"
+            style="@style/textStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/startWeatherValueLbl"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/weatherEndDate"
+            android:visibility="invisible" />
 
-    <ImageView
-        android:id="@+id/endWeatherImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="16dp"
-        android:layout_below="@id/endWeatherLbl"
-        android:visibility="invisible"
-        tools:srcCompat="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/endWeatherValueLbl"
+            style="@style/textStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/endWeatherLbl"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:textSize="25sp"
+            android:visibility="invisible" />
 
-    <Button
-        android:id="@+id/reserveBtn"
-        style="@style/btnStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/endWeatherValueLbl"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:visibility="invisible"
-        android:onClick="reserve"
-        android:text="@string/reserveRoomBtn" />
+        <ImageView
+            android:id="@+id/endWeatherImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/endWeatherLbl"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="16dp"
+            android:visibility="invisible"
+            tools:srcCompat="@tools:sample/avatars" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/reserveBtn"
+            style="@style/btnStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/endWeatherValueLbl"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:onClick="reserve"
+            android:text="@string/reserveRoomBtn"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+</ScrollView>

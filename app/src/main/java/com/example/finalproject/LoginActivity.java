@@ -40,11 +40,11 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
             try {
-                SharedPreferences preferences = getSharedPreferences("loggedAccount", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("loggedEmail", response.get(0).getString("email"));
-                PublicData.loggedEmail = response.get(0).getString("email");
-                editor.commit();
+                final String responseEmail = response.get(0).getString("email");
+                final String type = response.get(0).getString("type");
+                final String firstName = response.get(0).getString("firstName");
+                final String lastName = response.get(0).getString("lastName");
+                SaveUserInfo.writeData(responseEmail, type, firstName, lastName, this);
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             } catch (JSONException e) {

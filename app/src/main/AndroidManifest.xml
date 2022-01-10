@@ -14,18 +14,37 @@
         android:theme="@style/Theme.FinalProject"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ReserveActivity"
+            android:name=".MyReservationsActivity"
             android:exported="true"
-            android:parentActivityName=".RoomActivity">
-        </activity>
-
+            android:parentActivityName=".HomeActivity"
+            />
         <activity
-            android:name=".RoomSearchActivity"
+            android:name=".HomeActivity"
             android:exported="true" />
         <activity
+            android:name=".ReceptionistOrdersActivity"
+            android:exported="true"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".CustomerOrdersActivity"
+            android:exported="true"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".MenuActivity"
+            android:exported="true"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".RoomSearchActivity"
+            android:exported="true"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".ReserveActivity"
+            android:exported="true"
+            android:parentActivityName=".RoomActivity" />
+        <activity
             android:name=".RoomActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"
+            android:parentActivityName=".RoomSearchActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"
